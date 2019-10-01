@@ -1,0 +1,18 @@
+{
+    // two constants, first threshold for detecting if the
+    // refrigerator is open, and a second threshold for the number of
+    // seconds the refrigerator is open
+    "thresh": 50,
+    "open_threshold_seconds": 60,
+
+    // variables to store your aws account credentials
+    "aws_access_key_id": "AKIAV535R6QSDPPBNV6S",
+    "aws_secret_access_key": "97fiqvw+A334flGsw8HXt5LWwh3NiitiqJf/izss",
+    "s3_bucket": "raspberrypiarthurjishhh",
+    
+    // variables to store your twilio account credentials
+    "twilio_sid": "ACe73f5dc2735697b87e18185f77ddbe80",
+    "twilio_auth": "09895a4b302d3cfd32e84a903b870291",
+    "twilio_to": "+1-510-894-6327",
+    "twilio_from": "+1-917-602-1260"
+}
