@@ -26,7 +26,7 @@ class TwilioNotifier:
         
         # get the bucket location and build the url
         location = s3.get_bucket_location(
-            Bucket=self.conf["s3_bucket"])["LocationConstrain"]
+            Bucket=self.conf["s3_bucket"])["LocationConstraint"]
         url = "https://s3-{}.amazonaws.com/{}/{}".format(location,
                                                          self.conf["s3_bucket"], filename)
         
