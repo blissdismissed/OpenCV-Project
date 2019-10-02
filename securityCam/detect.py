@@ -76,9 +76,11 @@ while True:
     # calculate the average of all pixels where a higher mean
     # indicates that there is more light coming into the refrigerator
     mean = np.mean(gray)
+    print("Mean pixel val: ",mean)
 
     # determine if the refrigerator is currently open
     fridgeOpen = mean > conf["thresh"]
+    print("fridgeOpen: ",fridgeOpen)
 
     # if the fridge is open and previously it was closed, it means
     # the fridge has been just opened
@@ -98,6 +100,7 @@ while True:
     elif fridgePrevOpen:
         # calculate the time different between the current time and
         # start time
+        
         timeDiff = (datetime.now() - startTime).seconds
 
         # if the fridge is open and the time difference is greater
@@ -108,6 +111,7 @@ while True:
             if not notifSent:
                 # build the message and send a notification
                 msg = "Intruder has left your fridge open!!!"
+                print("Intruder left the fridge open! Need to close it!")
 
                 # release the video writer pointer and reset the
                 # writer object
@@ -134,6 +138,8 @@ while True:
                 endTime = datetime.now()
                 totalSeconds = (endTime - startTime).seconds
                 dateOpened = date.today().strftime("%A, %B %d %Y")
+                
+                print("Intruder Alert! NotifSent variable is currently set to: ",notifSent)
 
                 # build the message and send a notification
                 msg = "Your fridge was opened on {} at {} for {} " \
@@ -144,6 +150,8 @@ while True:
                 # writer object
                 writer.release()
                 writer = None
+                notifSent = True
+                print("notifSent is now: ",notifSent)
 
                 # send the message and the video to the owner
                 tn.send(msg, tempVideo)
@@ -151,6 +159,7 @@ while True:
     # check to see if we should write the frame to disk
     if writer is not None:
         writer.write(frame)
+    time.sleep(1)
 
 # check to see if we need to release the video writer pointer
 if writer is not None:
