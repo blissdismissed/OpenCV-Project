@@ -15,7 +15,7 @@ class TwilioNotifier:
     def _send(self, msg, tempVideo):
         # create a s3 client object
         s3 = boto3.client("s3",
-                aws_access_key_id=self.conf["aws_access_key_id"]
+                aws_access_key_id=self.conf["aws_access_key_id"],
                 aws_secret_access_key=self.conf["aws_secret_access_key"],
         )
         

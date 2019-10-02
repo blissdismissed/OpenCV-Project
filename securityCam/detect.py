@@ -1,18 +1,21 @@
 # import the necessary packages
 from __future__ import print_function
-from pyimagesearch.notifications import TwilioNotifer
+from pyimagesearch.notifications import TwilioNotifier
 from pyimagesearch.utils import Conf
 from imutils.video import VideoStream
 from imutils.io import TempFile
 from datetime import datetime
-from datetime import data
+from datetime import date
 import  numpy as np
 import argparse
 import imutils
 import signal
 import time
 import cv2
+from cv2 import VideoWriter_fourcc
 import sys
+
+fourcc = VideoWriter_fourcc(*'avc1')
 
 # function to handle keyboard interrupt
 def signal_handler(sig, frame):
@@ -86,7 +89,7 @@ while True:
         # create a temporary video file and initialize the video
         # writer object
         tempVideo = TempFile(ext=".mp4")
-        writer = cv2.VideoWriter(tempVideo.path, 0x21, 30, (W, H),
+        writer = cv2.VideoWriter(tempVideo.path, fourcc, 30, (W, H),
             True)
 
     # if the fridge is open then there are 2 possibilities,
