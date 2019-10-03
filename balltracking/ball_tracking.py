@@ -21,7 +21,7 @@ pts = deque(maxlen=args["buffer"])
 
 # if no videopath given, use camera
 if not args.get("video", False):
-    vs = VideoStream(src=0.start())
+    vs = VideoStream(src=0).start()
     
 # otherwise get the reference to the video file
 else:
@@ -66,6 +66,7 @@ while True:
         # compute min enclosing circle and centroid
         c = max(cnts, key=cv2.contourArea)
         ((x,y), radius) = cv2.minEnclosingCircle(c)
+        M = cv2.moments(c)
         center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
         
         # only proceed if radius meets a min size
@@ -85,7 +86,7 @@ while True:
             continue
         
         # otherwise draw it
-        thickness = int(np.sqrt(Args["buffer"] / float(i + 1)) * 2.5)
+        thickness = int(np.sqrt(args["buffer"] / float(i + 1)) * 2.5)
         cv2.line(frame, pts[i-1], pts[i], (0, 0, 255), thickness)
         
     # show frame to screen
