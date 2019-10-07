@@ -15,8 +15,8 @@ args = vars(ap.parse_args())
 # define boundaries of ball in HSV color space
 # (hue,saturation,value) --> use range detector in imutils library
 # init the list of tracked points
-greenLower = (29,86,6)
-greenUpper = (64,255,255)
+greenLower = (255,255,153) # changed to light yellow
+greenUpper = (204,204,0)   # changed to dark yellow
 pts = deque(maxlen=args["buffer"])
 
 # if no videopath given, use camera

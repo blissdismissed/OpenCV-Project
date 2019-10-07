@@ -8,13 +8,17 @@ import cv2
 camera = PiCamera()
 rawCapture = PiRGBArray(camera)
 
+camera.start_preview()
 # allow the camera to warmup
-time.sleep(0.1)
+time.sleep(5)
 
 # grab an image from the camera
-camera.capture(rawCapture, format="bgr")
-image = rawCapture.array
+#camera.capture(rawCapture, format="bgr")
+camera.capture('/home/pi/Desktop/image.jpg')
+#image = rawCapture.array
+
+camera.stop_preview()
 
 # display the image on screen and wait for a keypress
-cv2.imshow("Image", image)
-cv2.waitKey(1000)
+#cv2.imshow("Image", image)
+#cv2.waitKey(1000)
