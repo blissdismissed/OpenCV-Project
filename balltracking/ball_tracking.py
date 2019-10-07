@@ -15,8 +15,8 @@ args = vars(ap.parse_args())
 # define boundaries of ball in HSV color space
 # (hue,saturation,value) --> use range detector in imutils library
 # init the list of tracked points
-greenLower = (255,255,153) # changed to light yellow
-greenUpper = (204,204,0)   # changed to dark yellow
+greenLower = (86, 63, 6) # che uses the dark green here
+greenUpper = (249, 255, 64)   # uses almost baby blue here
 pts = deque(maxlen=args["buffer"])
 
 # if no videopath given, use camera
@@ -45,14 +45,21 @@ while True:
     
     # resize frame, blur, convert to HSV color space
     frame = imutils.resize(frame, width=600)
+    cv2.imshow("Original", frame)
     blurred = cv2.GaussianBlur(frame, (11, 11), 0)
+    cv2.imshow("Blurred", blurred)
     hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
+    cv2.imshow("HSV Convert", hsv)
     
     # construct mask for color "green"
     # do some erosions and dilations to remove small blobs
     mask = cv2.inRange(hsv, greenLower, greenUpper)
+    cv2.imshow("Filtered", mask)
+    #time.sleep(1)
     mask = cv2.erode(mask, None, iterations=2)
+    cv2.imshow("Erode", mask)
     mask = cv2.dilate(mask, None, iterations=2)
+    cv2.imshow("Dilate", mask)
     
     # find contours in mask, init center
     cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,
