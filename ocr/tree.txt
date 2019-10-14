@@ -1,0 +1,11 @@
+$ tree --dirsfirst
+.
+├── images
+│   ├── car_wash.png
+│   ├── lebron_james.jpg
+│   └── sign.jpg
+├── frozen_east_text_detection.pb
+├── text_detection.py
+└── text_detection_video.py
+
+1 directory, 6 files
